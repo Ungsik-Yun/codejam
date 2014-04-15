@@ -93,9 +93,9 @@ def solve_problem(problem):
             case['product_cost'][a_index] = -1
             b_index = case['product_cost'].index(result_set[2])
             result = [a_index + 1, b_index + 1]
-            print result
+            result.sort()
             f.write("Case #%d: %d %d\n" % (int(case['case_no']), result[0], result[1]))
 
 if __name__ == '__main__':
-    p = file_into_problem('A-small-practice.in')
+    p = file_into_problem('A-large-practice.in')
     solve_problem(p)
