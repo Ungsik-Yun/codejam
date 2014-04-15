@@ -67,25 +67,35 @@ def file_into_problem(file_name):
         for i in xrange(case_number):
             credit = int(f.readline())
             product_number = int(f.readline())
-            product_cost = [int(i) for i in f.readline().split()]
-            problem['cases'].append({'credit':credit, 'product_number':product_number, 'product_cost': product_cost})
+            product_cost = [int(j) for j in f.readline().split()]
+            problem['cases'].append({'credit':credit, 'product_number':product_number, 'product_cost': product_cost, 'case_no':i + 1})
     return problem
 
 
 def solve_problem(problem):
     now = datetime.now().strftime("%m%d_%H%M%S")
-    with open('result' + now + '.out', 'w+') as f:
+    with open('result.out', 'w+') as f:
         for case in problem['cases']:
             credit = case['credit']
-            product_list = [item for item in case['product_list'] if item < credit].sort()
-            product_number = len(product_list)
+            product_cost = [item for item in case['product_cost'] if item < credit]
+            product_cost.sort(reverse = True)
             possilbe_sets = []
-            for i in xrange(product_number):
-                temp_credit = credit
-                a = [item for item in product_list if item > (credit / 2)]
-                b = [item if  for item in product_list.remove if item < (credit / 2)]
-                
+            for i in xrange(len(product_cost)):
+                max_value = 0
+                a = product_cost[i]
+                for i in product_cost[i + 1:]:
+                    if a + i > max_value and a + i <= credit:
+                        b = i
+                        max_value = a + b
+                possilbe_sets.append((max_value, a, b))
+            result_set = max(possilbe_sets)
+            a_index = case['product_cost'].index(result_set[1])
+            case['product_cost'][a_index] = -1
+            b_index = case['product_cost'].index(result_set[2])
+            result = [a_index + 1, b_index + 1]
+            print result
+            f.write("Case #%d: %d %d\n" % (int(case['case_no']), result[0], result[1]))
 
 if __name__ == '__main__':
-    p = file_into_problem('a_test.in')
+    p = file_into_problem('A-small-practice.in')
     solve_problem(p)
