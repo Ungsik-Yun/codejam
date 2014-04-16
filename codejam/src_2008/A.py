@@ -4,8 +4,10 @@ Created on 2014. 4. 16.
 @author: Alice
 '''
 
+
 import multiprocessing
 from pprint import pprint
+
 
 def file_into_problem(file_name):
     with open(file_name, 'r+') as f:
@@ -24,8 +26,20 @@ def file_into_problem(file_name):
             problem['cases'].append(case)
     return problem
 
+
 def solve_problem(problem):
-    pass
+    case_number = problem['case_number']
+    with open('A result.out', 'w+') as f:
+        for case in problem['cases']:
+            result = 0
+            x = sorted(case['x'])
+            y = sorted(case['y'])
+
+            for i in xrange(len(x)):
+                result += x.pop(0) * y.pop()
+
+            f.write("Case #%d: %d\n" % (case['no'], result))
 
 if __name__ == '__main__':
-    pprint (file_into_problem('a_test.in'))
+    p = file_into_problem('A-large-practice.in')
+    solve_problem(p)
