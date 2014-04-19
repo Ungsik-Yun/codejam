@@ -6,7 +6,6 @@ Created on 2014. 4. 16.
 
 
 from pprint import pprint
-from doctest import IGNORE_EXCEPTION_DETAIL
 
 
 def file_into_problem(file_name):
