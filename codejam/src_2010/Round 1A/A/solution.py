@@ -26,8 +26,8 @@ def solve_problem(problem):
         for no, case in enumerate(problem, start=1):
             gravited_board = gravity_from_right(case['board'])
             winner = check_winner(gravited_board, case['k'])
-            print "No.",no, ":",case['k'], winner
-            pprint(gravited_board, width=10)
+            # print "No.",no, ":",case['k'], winner
+            # pprint(gravited_board, width=10)
             f.write("Case #%d: %s\n" % (no, winner))
 
 
@@ -64,30 +64,45 @@ def check_winner(board, k):
 
 
     right_lower_board = [i[::-1] for i in board[::-1]]
+    diagonal_full_left_upper = []
+    diagonal_full_right_lower = []
     for diagonal_no in xrange(n):
         diagonal_left_upper = ""
         diagonal_right_lower = ""
         for line in xrange(diagonal_no+1):
             diagonal_left_upper += board[line][diagonal_no-line]
             diagonal_right_lower += right_lower_board[line][diagonal_no-line]
+
+        diagonal_full_left_upper.append(diagonal_left_upper)
+        diagonal_full_right_lower.append(diagonal_right_lower)
         is_red_win = is_red_win or (diagonal_left_upper.find(red_target) >= 0)
         is_blue_win = is_blue_win or (diagonal_left_upper.find(blue_target) >= 0)
         is_red_win = is_red_win or (diagonal_right_lower.find(red_target) >= 0)
         is_blue_win = is_blue_win or (diagonal_right_lower.find(blue_target) >= 0)
-
+    # print "----"
+    # pprint(diagonal_full_left_upper, width=10)
+    # pprint(diagonal_full_right_lower, width=10)
+    # print "----"
 
     left_lower_board = [i[::-1] for i in board[::-1]]
-    for column_no in xrange(n):
+    diagonal_full_left_lower = []
+    diagonal_full_right_upper = []
+    for line_no in xrange(n-1, -1, -1):
         diagonal_left_lower = ""
         diagonal_right_upper = ""
-        for line in xrange(column_no-1,-1,-1):
-            diagonal_left_lower += board[line][column_no-line-1]
-            diagonal_right_upper += left_lower_board[line][column_no-line-1]
+        for column_no in xrange(n-line_no):
+            diagonal_left_lower += board[line_no+column_no][column_no]
+            diagonal_right_upper += left_lower_board[line_no+column_no][column_no]
+        diagonal_full_left_lower.append(diagonal_left_lower)
+        diagonal_full_right_upper.append(diagonal_right_upper)
         is_red_win = is_red_win or (diagonal_left_lower.find(red_target) >= 0)
         is_blue_win = is_blue_win or (diagonal_left_lower.find(blue_target) >= 0)
         is_red_win = is_red_win or (diagonal_right_upper.find(red_target) >= 0)
         is_blue_win = is_blue_win or (diagonal_right_upper.find(blue_target) >= 0)
-
+    # print "----"
+    # pprint(diagonal_full_left_lower, width=10)
+    # pprint(diagonal_full_right_upper, width=10)
+    # print "----"
 
     if is_red_win and is_blue_win:
         result = "Both"
@@ -103,6 +118,7 @@ def check_winner(board, k):
 
 if __name__ == '__main__':
     # p = read_problem('A-small-practice.in')
-    p = read_problem('sample.in')
+    p = read_problem('A-large-practice.in')
+    # p = read_problem('sample.in')
     # pprint(p, width=10)
     solve_problem(p)
