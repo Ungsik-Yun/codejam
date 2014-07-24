@@ -1,6 +1,4 @@
 from pprint import pprint
-import string
-
 
 def file_into_problem(file_name):
     problem = {}
