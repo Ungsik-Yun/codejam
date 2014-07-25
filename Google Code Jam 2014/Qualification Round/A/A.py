@@ -6,6 +6,7 @@ Created on 2014. 4. 13.
 
 from pprint import pprint
 
+
 def file_to_problem(f):
     '''
     {'case_number': 100,
@@ -32,17 +33,21 @@ def file_to_problem(f):
         line_number = 0
         for i in xrange(case_number):
             problem['cases'].append(dict())
-            problem['cases'][i] = {'no' : i + 1}
+            problem['cases'][i] = {'no': i + 1}
 
-            problem['cases'][i]['first'] = {'answer': int(problem_file.readline())}
+            problem['cases'][i]['first'] = {
+                'answer': int(problem_file.readline())}
             problem['cases'][i]['first']['cards'] = []
             for j in xrange(4):
-                problem['cases'][i]['first']['cards'].append([card for card in problem_file.readline().split()])
+                problem['cases'][i]['first']['cards'].append(
+                    [card for card in problem_file.readline().split()])
 
-            problem['cases'][i]['second'] = {'answer': int(problem_file.readline())}
+            problem['cases'][i]['second'] = {
+                'answer': int(problem_file.readline())}
             problem['cases'][i]['second']['cards'] = []
             for j in xrange(4):
-                problem['cases'][i]['second']['cards'].append([card for card in problem_file.readline().split()])
+                problem['cases'][i]['second']['cards'].append(
+                    [card for card in problem_file.readline().split()])
 
     return problem
 
@@ -60,7 +65,7 @@ def solve_problem(problem):
             first_answer = case['first']['answer']
             second_answer = case['second']['answer']
 
-            first_candidate = case['first']['cards'][first_answer - 1 ]
+            first_candidate = case['first']['cards'][first_answer - 1]
             second_candidate = case['second']['cards'][second_answer - 1]
             result = []
             for n in first_candidate:
@@ -74,7 +79,6 @@ def solve_problem(problem):
                 result_message = 'Volunteer cheated!'
             else:
                 result_message = 'Bad magician!'
-
 
             print "Case #%s: %s" % (case['no'], result_message)
 

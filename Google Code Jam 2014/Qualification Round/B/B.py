@@ -7,6 +7,7 @@ Created on 2014. 4. 13.
 
 from pprint import pprint
 
+
 def file_into_problem(file_name):
     problem = {}
     with open(file_name, 'r+') as f:
@@ -19,6 +20,7 @@ def file_into_problem(file_name):
             problem['cases'].append(problem_float)
 
     return problem
+
 
 def solve_prolbem(problem):
     with open('result B3.txt', 'w+') as f:
@@ -48,9 +50,8 @@ def solve_prolbem(problem):
             case_number += 1
 
 
-
 if __name__ == '__main__':
-#     p = file_into_problem('B-small-attempt1.in')
+    #     p = file_into_problem('B-small-attempt1.in')
     p = file_into_problem('B-large.in')
 #     p = file_into_problem('test b')
     solve_prolbem(p)

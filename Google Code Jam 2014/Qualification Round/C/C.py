@@ -4,6 +4,7 @@ Created on 2014. 4. 13.
 @author: Alice
 '''
 
+
 def file_into_problem(file_name):
     problem = {}
     with open(file_name, 'r+') as f:
@@ -27,7 +28,7 @@ def solve_problem(problem):
         mines = case[2]
         field_size = row * column
         safty_zone = field_size - mines
-        if field_size > 9 and safty_zone < 9 :
+        if field_size > 9 and safty_zone < 9:
             result_message = "Impossible"
             print "Case #%d:\n%s" % (case_counter, result_message)
         case_counter += 1
