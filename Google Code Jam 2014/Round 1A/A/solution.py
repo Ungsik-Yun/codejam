@@ -29,17 +29,20 @@ def solve_prolbem(problem, file_name):
             devices_set = set(devices)
             # devices.sort()
             # outlets.sort()
-            fliped = "NOT POSSIBLE"
+            fliped_counter_list = []
 
-            for i in xrange(2 ** case['L']):
-                switched = [outlet ^ i for outlet in outlets]
-                # switched.sort()
-                # print i, devices, switched, outlets
-                print no, i
-                if set(switched) == devices_set:
-                    fliped = bin(i).count('1')
-                    break
-            f.write("Case #%d: %s\n" % (no, str(fliped)))
+            for device in devices:
+                candidate_switch_combination = outlets[0] ^ device
+                candidate_outlets = [outlet ^ candidate_switch_combination for outlet in outlets]
+                # print no, devices_set, set(candidate_outlets), bin(candidate_switch_combination)
+                if set(candidate_outlets) == devices_set:
+                    fliped_counter_list.append(bin(candidate_switch_combination).count('1'))
+
+            if len(fliped_counter_list):
+                result = min(fliped_counter_list)
+            else:
+                result = "NOT POSSIBLE"
+            f.write("Case #%d: %s\n" % (no, str(result)))
 
 if __name__ == '__main__':
     # inputs = ['A-small-practice.in', 'A-large-practice.in']
