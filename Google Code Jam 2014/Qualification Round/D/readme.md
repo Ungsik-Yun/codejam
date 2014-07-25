@@ -15,13 +15,13 @@ Naomi has realized three things about War. First, she has realized that she lose
 
 Here is how Deceitful War works, with differences between Deceitful War and War in bold:
 
-    0. Each player weighs each of his or her own blocks. Naomi also weighs Ken's blocks while he isn't looking, so Naomi knows the weights of all blocks and Ken only knows the weights of his own blocks.
-    0. They repeat the following process N times:
-        1. Naomi chooses one of her own blocks, with mass ChosenNaomi.
-        1. Naomi tells Ken a number, ToldNaomi, between 0.0kg and 1.0kg exclusive. Ken, who thinks they're playing War, thinks the number Naomi just told him is ChosenNaomi.
-        1. Ken chooses one of his own blocks, with mass ChosenKen.
-        1. They each put their block on one side of a balance scale, and the person whose block is heavier gets one point.
-        1. Both blocks are destroyed in a fire.
+0. Each player weighs each of his or her own blocks. __Naomi also weighs Ken's blocks while he isn't looking, so Naomi knows the weights of all blocks__ and Ken only knows the weights of his own blocks.
+0. They repeat the following process N times:
+    1. Naomi chooses one of her own blocks, with mass ChosenNaomi.
+    1. Naomi tells Ken __a number, ToldNaomi, between 0.0kg and 1.0kg exclusive.__ Ken, who thinks they're playing War, thinks the number Naomi just told him is ChosenNaomi.
+    1. Ken chooses one of his own blocks, with mass ChosenKen.
+    1. They each put their block on one side of a balance scale, and the person whose block is heavier gets one point.
+    1. Both blocks are destroyed in a fire.
 Naomi doesn't want Ken to know that she isn't playing War; so when she is choosing which block to play, and what mass to tell Ken, she must make sure that the balance scale won't reveal that ChosenNaomi ≠ ToldNaomi. In other words, she must make decisions so that:
 
 - ChosenNaomi > ChosenKen if, and only if, ToldNaomi > ChosenKen, and
