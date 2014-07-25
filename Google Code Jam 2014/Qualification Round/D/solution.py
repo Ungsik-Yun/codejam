@@ -17,7 +17,7 @@ def file_into_problem(file_name):
 
 
 def solve_prolbem(problem, file_name):
-    with open(file_name+'.out', 'w+') as f:
+    with open(file_name + '.out', 'w+') as f:
         cases = problem['cases']
         for no, case in enumerate(cases, start=1):
             # war
@@ -30,7 +30,8 @@ def solve_prolbem(problem, file_name):
             war_score_board = {'naomi': 0, 'ken': 0}
             for n in xrange(case['N']):
                 naomi_chosen = naomi.pop()
-                ken_chosen_cadidate = [chosen for chosen in ken if chosen > naomi_chosen]
+                ken_chosen_cadidate = [
+                    chosen for chosen in ken if chosen > naomi_chosen]
 
                 if len(ken_chosen_cadidate) == 0:
                     ken_chosen = ken.pop()
@@ -60,7 +61,8 @@ def solve_prolbem(problem, file_name):
                     naomi_chosen = naomi.pop()
                     naomi_tell = max(ken) + 0.00001
 
-                ken_chosen_cadidate = [chosen for chosen in ken if chosen > naomi_tell]
+                ken_chosen_cadidate = [
+                    chosen for chosen in ken if chosen > naomi_tell]
 
                 if len(ken_chosen_cadidate) == 0:
                     ken_chosen = ken.pop()
@@ -68,7 +70,8 @@ def solve_prolbem(problem, file_name):
                     ken_chosen = min(ken_chosen_cadidate)
                     ken.remove(ken_chosen)
 
-                # print "%d: %.6f\t%.6f\t%.6f" % (no, naomi_chosen, naomi_tell, ken_chosen)
+                # print "%d: %.6f\t%.6f\t%.6f" % (no, naomi_chosen, naomi_tell,
+                # ken_chosen)
 
                 if ken_chosen > naomi_tell:
                     deceitful_war_score_board['ken'] += 1
